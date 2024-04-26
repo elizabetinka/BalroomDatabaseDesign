@@ -1,0 +1,25 @@
+version: "3.9"
+
+name: "balroom-service"
+      
+
+services:
+  postgres:
+    container_name: postgresDB
+    image: postgres:14.5
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d/migrations
+      - ./generator:/docker-entrypoint-initdb.d/generator
+      - ./.env:/docker-entrypoint-initdb.d/env
+      - ./init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./roles.sh:/docker-entrypoint-initdb.d/roles.sh
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+
