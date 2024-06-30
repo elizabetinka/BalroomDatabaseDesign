@@ -1,0 +1,121 @@
+Without indexes 
+file: request/4.sql    n: 10
+Best time: 0.111
+Avg time: 0,134
+Worst time: 0.255
+ 
+file: request/5.sql    n: 10
+Best time: 0.081
+Avg time: 0,1142
+Worst time: 0.215
+ 
+file: request/2.sql    n: 10
+Best time: 0.184
+Avg time: 0,2508
+Worst time: 0.396
+ 
+file: request/3.sql    n: 10
+Best time: 1.607
+Avg time: 2,0666
+Worst time: 2.841
+ 
+file: request/1.sql    n: 10
+Best time: 0.285
+Avg time: 0,4269
+Worst time: 1.142
+ 
+With indexes 
+file: request/4.sql    n: 10
+Best time: 0.106
+Avg time: 0,1318
+Worst time: 0.179
+ 
+file: request/5.sql    n: 10
+Best time: 0.077
+Avg time: 0,0996
+Worst time: 0.168
+ 
+file: request/2.sql    n: 10
+Best time: 0.181
+Avg time: 0,307
+Worst time: 0.671
+ 
+file: request/3.sql    n: 10
+Best time: 1.616
+Avg time: 2,2774
+Worst time: 4.250
+ 
+file: request/1.sql    n: 10
+Best time: 0.200
+Avg time: 0,2972
+Worst time: 0.668
+ 
+With partitions 
+file: request/4.sql    n: 10
+Best time: 0.107
+Avg time: 0,1228
+Worst time: 0.150
+ 
+file: request/5.sql    n: 10
+Best time: 0.077
+Avg time: 0,1373
+Worst time: 0.229
+ 
+file: request/2.sql    n: 10
+Best time: 0.180
+Avg time: 0,2363
+Worst time: 0.503
+ 
+file: request/3.sql    n: 10
+Best time: 1.579
+Avg time: 2,0519
+Worst time: 3.442
+ 
+file: request/1.sql    n: 10
+Best time: 0.294
+Avg time: 0,3804
+Worst time: 0.708
+ 
+----------------------------- 
+In result : 
+			  Best time 		 Avg time 		 Worst time 
+request/4.sql
+Without anyth:  		 0.111 		  0,134 		  0.255
+With indexes:  		  0.106 		  0,1318 		  0.179
+Update 2 of 1: 	  4,5045 % 		  1,64179 % 		  29,8039 %
+With partitions: 		  0.107 		  0,1228 		  0.150
+Update 3 of 2: 	  -0,943396 % 		  6,82853 % 		  16,2011 %
+Update 3 of 1: 	  3,6036 % 		  8,35821 % 		  41,1765 %
+----------------------------- 
+request/5.sql
+Without anyth:  		 0.081 		  0,1142 		  0.215
+With indexes:  		  0.077 		  0,0996 		  0.168
+Update 2 of 1: 	  4,93827 % 		  12,7846 % 		  21,8605 %
+With partitions: 		  0.077 		  0,1373 		  0.229
+Update 3 of 2: 	  0 % 		  -37,8514 % 		  -36,3095 %
+Update 3 of 1: 	  4,93827 % 		  -20,2277 % 		  -6,51163 %
+----------------------------- 
+request/2.sql
+Without anyth:  		 0.184 		  0,2508 		  0.396
+With indexes:  		  0.181 		  0,307 		  0.671
+Update 2 of 1: 	  1,63043 % 		  -22,4083 % 		  -69,4444 %
+With partitions: 		  0.180 		  0,2363 		  0.503
+Update 3 of 2: 	  0,552486 % 		  23,0293 % 		  25,0373 %
+Update 3 of 1: 	  2,17391 % 		  5,7815 % 		  -27,0202 %
+----------------------------- 
+request/3.sql
+Without anyth:  		 1.607 		  2,0666 		  2.841
+With indexes:  		  1.616 		  2,2774 		  4.250
+Update 2 of 1: 	  -0,56005 % 		  -10,2003 % 		  -49,5952 %
+With partitions: 		  1.579 		  2,0519 		  3.442
+Update 3 of 2: 	  2,2896 % 		  9,90164 % 		  19,0118 %
+Update 3 of 1: 	  1,74238 % 		  0,711313 % 		  -21,1545 %
+----------------------------- 
+request/1.sql
+Without anyth:  		 0.285 		  0,4269 		  1.142
+With indexes:  		  0.200 		  0,2972 		  0.668
+Update 2 of 1: 	  29,8246 % 		  30,3818 % 		  41,5061 %
+With partitions: 		  0.294 		  0,3804 		  0.708
+Update 3 of 2: 	  -47 % 		  -27,9946 % 		  -5,98802 %
+Update 3 of 1: 	  -3,15789 % 		  10,8925 % 		  38,0035 %
+----------------------------- 

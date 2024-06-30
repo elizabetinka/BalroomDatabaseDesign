@@ -1,0 +1,49 @@
+                                                                                           QUERY PLAN                                                                                           
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ GroupAggregate  (cost=201.20..201.22 rows=1 width=16) (actual time=0.243..0.246 rows=0 loops=1)
+   Group Key: dc.categoryid
+   ->  Sort  (cost=201.20..201.21 rows=1 width=12) (actual time=0.242..0.245 rows=0 loops=1)
+         Sort Key: dc.categoryid
+         Sort Method: quicksort  Memory: 25kB
+         ->  Nested Loop Left Join  (cost=10.41..201.19 rows=1 width=12) (actual time=0.222..0.224 rows=0 loops=1)
+               ->  Nested Loop Left Join  (cost=10.12..200.60 rows=1 width=12) (actual time=0.222..0.224 rows=0 loops=1)
+                     ->  Nested Loop  (cost=9.83..200.11 rows=1 width=8) (actual time=0.222..0.224 rows=0 loops=1)
+                           Join Filter: (dn.partid = c.partid)
+                           Rows Removed by Join Filter: 3
+                           ->  Nested Loop  (cost=9.54..198.09 rows=6 width=12) (actual time=0.130..0.198 rows=3 loops=1)
+                                 Join Filter: (dn.dancerid = dc.dancerid)
+                                 ->  Nested Loop  (cost=9.25..195.13 rows=6 width=16) (actual time=0.115..0.171 rows=1 loops=1)
+                                       ->  Nested Loop  (cost=8.97..182.35 rows=37 width=4) (actual time=0.100..0.150 rows=7 loops=1)
+                                             ->  Append  (cost=0.29..24.65 rows=3 width=4) (actual time=0.040..0.053 rows=1 loops=1)
+                                                   ->  Index Only Scan using dancerperson_pkey on dancerperson dp_1  (cost=0.29..8.31 rows=1 width=4) (actual time=0.039..0.040 rows=1 loops=1)
+                                                         Index Cond: (personid = 1)
+                                                         Heap Fetches: 0
+                                                   ->  Index Only Scan using mans_pkey on mans dp_2  (cost=0.14..8.16 rows=1 width=4) (actual time=0.005..0.006 rows=0 loops=1)
+                                                         Index Cond: (personid = 1)
+                                                         Heap Fetches: 0
+                                                   ->  Index Only Scan using ladyies_pkey on ladyies dp_3  (cost=0.14..8.16 rows=1 width=4) (actual time=0.006..0.006 rows=0 loops=1)
+                                                         Index Cond: (personid = 1)
+                                                         Heap Fetches: 0
+                                             ->  Bitmap Heap Scan on dancer d  (cost=8.68..52.45 rows=12 width=12) (actual time=0.058..0.093 rows=7 loops=1)
+                                                   Recheck Cond: ((manid = dp.personid) OR (ladyid = dp.personid))
+                                                   Heap Blocks: exact=7
+                                                   ->  BitmapOr  (cost=8.68..8.68 rows=12 width=0) (actual time=0.018..0.018 rows=0 loops=1)
+                                                         ->  Bitmap Index Scan on ix_manid  (cost=0.00..4.33 rows=6 width=0) (actual time=0.009..0.009 rows=4 loops=1)
+                                                               Index Cond: (manid = dp.personid)
+                                                         ->  Bitmap Index Scan on ix_ladyid  (cost=0.00..4.33 rows=6 width=0) (actual time=0.007..0.007 rows=3 loops=1)
+                                                               Index Cond: (ladyid = dp.personid)
+                                       ->  Index Scan using ix_dancerid_dancernumber on dancernumber dn  (cost=0.29..0.33 rows=2 width=12) (actual time=0.003..0.003 rows=0 loops=7)
+                                             Index Cond: (dancerid = d.dancerid)
+                                 ->  Index Scan using ix_dancerid_dancercategory on dancercategory dc  (cost=0.29..0.42 rows=6 width=8) (actual time=0.014..0.025 rows=3 loops=1)
+                                       Index Cond: (dancerid = d.dancerid)
+                           ->  Index Scan using category_pkey on category c  (cost=0.29..0.32 rows=1 width=8) (actual time=0.008..0.008 rows=1 loops=3)
+                                 Index Cond: (categoryid = dc.categoryid)
+                     ->  Index Only Scan using protocolstages_pkey on protocolstages ps  (cost=0.29..0.49 rows=1 width=12) (never executed)
+                           Index Cond: ((categoryid = dc.categoryid) AND (dancer_number = dn.dancer_number))
+                           Heap Fetches: 0
+               ->  Index Scan using protocolfinal_pkey on protocolfinal pf  (cost=0.29..0.58 rows=1 width=12) (never executed)
+                     Index Cond: ((categoryid = dc.categoryid) AND (dancer_number = dn.dancer_number))
+ Planning Time: 6.204 ms
+ Execution Time: 0.408 ms
+(45 rows)
+

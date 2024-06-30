@@ -1,0 +1,15 @@
+DROP INDEX IF  EXISTS  ix_dancerID_DancerNumber;
+DROP INDEX IF  EXISTS  ix_dancer_number;
+DROP INDEX IF  EXISTS  ix_manId;
+DROP INDEX IF  EXISTS  ix_ladyId;
+DROP INDEX IF  EXISTS  ix_dancerID_DancerCategory;
+DROP INDEX IF  EXISTS   ix_categoryID_DancerCategory;
+DROP INDEX IF  EXISTS ix_partId;
+DROP INDEX IF  EXISTS   ix_dancer_number_stages;
+DROP INDEX IF  EXISTS   ix_categoryID_stages;
+DROP INDEX IF  EXISTS   ix_dancer_number_final;
+DROP INDEX IF  EXISTS  ix_categoryID_final;
+DROP INDEX IF  EXISTS  ix_partID_Ticket;
+DROP INDEX IF  EXISTS  ix_judgeID;
+DROP INDEX IF EXISTS  ix_dance;
+DROP INDEX IF  EXISTS  ix_cross_mark;

@@ -1,5 +1,5 @@
 DROP TYPE IF EXISTS Dance;
-CREATE TYPE Dance AS ENUM ('Медленный вальс', 'Танго', 'Венский вальс', 'Фокстрот', 'Квиксеп', 'Самба','Ча-ча-ча', 'Румба', 'Пасодобль', 'Джайв');
+CREATE TYPE Dance AS ENUM ('Медленный вальс', 'Танго', 'Венский вальс', 'Фокстрот', 'Квикстеп', 'Самба','Ча-ча-ча', 'Румба', 'Пасодобль', 'Джайв');
 
 
 DROP TYPE IF EXISTS AgeCategory;
@@ -119,9 +119,8 @@ CREATE TABLE IF NOT EXISTS ProtocolFinal (
     dancer_number     integer NOT NULL,
     dance    Dance NOT NULL,
     judgeID      integer NOT NULL,
-    stage integer NOT NULL,
     place_mark INTEGER NOT NULL,
-    PRIMARY KEY (categoryID, dancer_number, dance,judgeID,stage),
+    PRIMARY KEY (categoryID, dancer_number, dance,judgeID),
     FOREIGN KEY (categoryID) REFERENCES Category (categoryID),
     FOREIGN KEY (judgeID) REFERENCES Judge (judgeID),
     FOREIGN KEY (dancer_number) REFERENCES DancerNumber (dancer_number)

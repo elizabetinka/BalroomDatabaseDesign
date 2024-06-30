@@ -95,22 +95,21 @@ SELECT
      FLOOR(RANDOM() * FLOOR(:'count')+1 )::INTEGER,
       (enum_range(NULL::Dance))[random_choice(array[1,2,3,4,5,6,7,8,9,10])],
       FLOOR(RANDOM() * FLOOR(:'count')+1 )::INTEGER,
-      FLOOR(RANDOM() * 8+1 )::INTEGER,
+      FLOOR(RANDOM() * 8+2 )::INTEGER,
       RANDOM() > 0.5
 FROM GENERATE_SERIES(1, :'count') i
 ON CONFLICT (  categoryID  , dancer_number,dance,judgeID,stage) DO NOTHING;
 
 
-INSERT INTO ProtocolFinal ( categoryID  , dancer_number,dance,judgeID,stage,place_mark)
+INSERT INTO ProtocolFinal ( categoryID  , dancer_number,dance,judgeID,place_mark)
 SELECT
      FLOOR(RANDOM() * FLOOR(:'count'/2)+1 )::INTEGER,
      FLOOR(RANDOM() * FLOOR(:'count')+1 )::INTEGER,
       (enum_range(NULL::Dance))[random_choice(array[1,2,3,4,5,6,7,8,9,10])],
       FLOOR(RANDOM() * FLOOR(:'count')+1 )::INTEGER,
-      FLOOR(RANDOM() * 8+1 )::INTEGER,
        FLOOR(RANDOM() * 6+1 )::INTEGER
 FROM GENERATE_SERIES(1, :'count') 
-ON CONFLICT (  categoryID  , dancer_number,dance,judgeID,stage) DO NOTHING;
+ON CONFLICT (  categoryID  , dancer_number,dance,judgeID) DO NOTHING;
 
 
 

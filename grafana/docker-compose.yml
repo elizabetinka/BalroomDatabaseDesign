@@ -1,0 +1,20 @@
+version: '3.9'
+
+volumes:
+    grafana-data: {}
+
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    user: root
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana/
+      - grafana-data:/var/lib/grafana/
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    hostname: grafana
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
